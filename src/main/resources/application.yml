@@ -1,0 +1,36 @@
+# application.yml
+server:
+  # 应用运行端口
+  port: 8080
+
+spring:
+  datasource:
+    # JDBC 驱动类名
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 数据库连接 URL，注意时区设置 GMT+8
+    url: jdbc:mysql://localhost:3306/studentdb?serverTimezone=GMT%2B8
+    # 数据库用户名
+    username: root
+    # 数据库密码
+    password: root
+
+# MyBatis-Plus 配置
+mybatis-plus:
+  configuration:
+    # 开启 SQL 日志输出到控制台
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  
+  # 全局配置
+  global-config:
+    db-config:
+      # 设置实体类对应的表名统一前缀
+      table-prefix: t_
+      # 设置统一的主键生成策略为自增
+      id-type: auto
+
+  # 配置 Mapper XML 文件的位置（关键：与您的第一个图片匹配）
+  mapper-locations: classpath:mapper/*xml
+
+  # 配置实体类（Type Aliases）的扫描包
+  # 允许在 Mapper XML 中直接使用 Student
+  type-aliases-package: com.ShenLi.entity
